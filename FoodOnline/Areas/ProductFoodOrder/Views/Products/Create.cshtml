@@ -1,0 +1,302 @@
+﻿@model FoodOnline.Models.Product
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Product<Create";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Image</label>
+
+            <div class="col-md-10">
+                <div> <img height="130" width="130" id="user_img"> </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Upload Image <span class="sao">*</span></label>
+
+            <div class="col-md-10">
+                <div name="filedrag" style="position: absolute; width: 100%; height: 37.4px; z-index: -1;"></div>
+                <input type="text" id="getImg" class="input-img" disabled style="border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem;">
+                <input type="file" name="image" accept=".jpg, .jpeg, .png" class="filestyle" data-btnclass="btn-primary" id="filestyle-4" tabindex="-1" style="display: none;" onchange="show(this)">
+                <span class="group-span-filestyle input-group-btn" tabindex="0">
+                    <label for="filestyle-4" style="margin-bottom: 4px;" class="btn btn-primary">
+                        <span class="buttonText">Upload</span>
+                    </label>
+                </span>
+
+                <div>@Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger", @id = "error_img" })</div>
+
+                <div id="validate_img" class="text-danger"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.NameProduct, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">Name Food <span class="sao">*</span></label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NameProduct, new { htmlAttributes = new { @class = "form-control", @id = "namefood", @maxlength = "60", @data_val = "true", @required = "required" } })
+                <span class="character_count"></span>
+
+                <br />
+                <div class="text-danger" id="validate_namefood"></div>
+                @Html.ValidationMessageFor(model => model.NameProduct, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Category <span class="sao">*</span></label>
+            @*@Html.LabelFor(model => model.IdCategory, "IdCategory", htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+            <div class="col-md-10">
+                @Html.DropDownList("IdCategory", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdCategory, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">Price <span class="sao">*</span></label>
+            <div class="col-md-10">
+                @*, @type = "number", @min = "0", @step = "1", @value = "0"*@
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                <br />
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Describe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Describe, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.TextAreaFor(model => model.Describe, 7, 80, new { htmlAttributes = new { @class = "form-control", @id = "describe" }, style = "width: 60%", @placeholder = " Enter describe here...", @maxlength = "500" })
+                <span class="character_count"></span>
+
+                <br />
+                <div class="text-danger" id="validate_describe"></div>
+                @Html.ValidationMessageFor(model => model.Describe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @* bật promotion *@
+        <div class="form-group">
+            <label class="control-label col-md-2"> </label>
+
+            <div class="custom-control custom-switch col-md-10">
+                &nbsp;&nbsp;
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1"> Do you want to create a promotion? </label>
+            </div>
+            @*<div class="checkbox checkbox-primary col-md-10">
+                        <input id="remember-1" type="checkbox">
+                        <label for="remember-1"> Promotion </label>
+                </div>*@
+        </div>
+
+        @* bật promotion thì mới được chọn *@
+        <div class="form-group">
+            <label class="control-label col-md-2" id="labelPriceChange" style="display: none">Price change</label>
+            @*@Html.LabelFor(model => model.Promotion, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Promotion, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                <br />
+                @Html.ValidationMessageFor(model => model.Promotion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" id="labelDate" style="display: none">From Date - To Date</label>
+            <div class="col-md-10">
+                <input type="text" id="datetime" name="datetimes" style="display: none" class="form-control input-daterange-timepicker" value="01/01/2023 1:30 PM - 02/01/2023 2:00 PM" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.StartTimePromotion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartTimePromotion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.EndTimePromotion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EndTimePromotion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="cc">
+                <button type="button" class="btn-create" onclick="location.href='@Url.Action("Index", "Products")'">
+                    Back to List
+                </button>
+                <input type="submit" value="Create" id="submit" class="btn-create" onclick="return validate();" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<br />
+<br />
+@*<div>
+        <a href="Index">
+            <img src="~/Areas/Content/assets/images/icon/back-blue.png" height="27">
+        </a>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        var msg = '@TempData["ErrorImg"]';
+        if (msg.length) {
+            alert(msg);
+        }
+        function show(input) {
+            debugger;
+            var validExtensions = ['jpg', 'png', 'jpeg']; //array of valid extensions
+            var fileName = input.files[0].name;
+            var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+            var fsize = $(input)[0].files[0].size;
+
+            if ($.inArray(fileNameExt, validExtensions) == -1) {
+                input.type = ''
+                input.type = 'file'
+                $('#user_img').attr('src', "");
+                $('#validate_img').html("Only these file types are accepted : " + validExtensions.join(', '));
+                //alert("Only these file types are accepted : " + validExtensions.join(', '));
+            }
+            else {
+                if (input.files && input.files[0]) {
+                    var fileName1 = $('input:file').val().match(/[^\\/]*$/)[0];
+
+                    var filerdr = new FileReader();
+
+                    filerdr.onload = function (e) {
+                        if (fsize > 1048576) {
+                            $('#validate_img').html(fsize + " bites\nToo big!");
+                        }
+                        //else {
+                        //    $('#validate_img').html(fsize + " bites\nYou are good to go!");
+                        //    //alert(fsize + " bites\nYou are good to go!");
+
+                        //}
+                        $('#user_img').attr('src', e.target.result);
+                        $('#getImg').val(fileName1);
+
+                    }
+
+                    filerdr.readAsDataURL(input.files[0]);
+                    $('#validate_img').html("");
+                    //$('#error_img').html("");
+                }
+            }
+
+
+        }
+
+
+
+        function validate() {
+            if ($('#filestyle-4').val() == "") {
+                $('#validate_img').html("You haven't selected a photo yet! ");
+                return false;
+            }
+
+            return true;
+
+        }
+
+        $(document).ready(function () {
+            $("input, textarea").on("keyup", function () {
+                if (typeof $(this).attr('maxlength') !== "undefined" && $(this).attr('maxlength') !== false) {
+
+                    length = $(this).val().length;
+                    max = parseInt($(this).attr('maxlength'));
+                    //$('input').val(max - $(this).val().length);
+                    if (length != 0) {
+                        $(this).next(".character_count").html("(" + length + "/" + max + " characters)");
+                    } else {
+                        $(this).next(".character_count").html("");
+                    }
+                }
+            });
+
+            $('input[name="datetimes"]').daterangepicker({
+                timePicker: true,
+                startDate: moment().startOf('hour'),
+                endDate: moment().startOf('hour').add(32, 'hour'),
+                locale: {
+                    format: 'DD-MM-YYYY hh:mm A'
+                }
+            });
+
+            $('#customSwitch1').on('click', function () {
+                if ($(this).is(':checked')) {
+                    $('#Promotion').toggle(this.checked).val('');
+                    $('#datetime').toggle(this.checked).val('01/01/2023 1:30 PM - 02/01/2023 2:00 PM');
+                    $('#labelPriceChange').toggle(this.checked);
+                    $('#labelDate').toggle(this.checked);
+                }
+                else {
+                    $('#Promotion').toggle(this.unchecked).val('');
+                    $('#datetime').toggle(this.unchecked).val('');
+                    $('#Promotion-error').toggle(this.unchecked).html('');
+                    $('#labelPriceChange').toggle(this.unchecked);
+                    $('#labelDate').toggle(this.unchecked);
+                }
+            });
+
+            $('#submit').on('click', function () {
+                if ($('#Promotion').val() != '') {
+                    var startDate = $('#datetime').data('daterangepicker').startDate.format('YYYY/MM/DD hh:mm A');
+                    var endDate = $('#datetime').data('daterangepicker').endDate.format('YYYY/MM/DD hh:mm A');
+                    $('#StartTimePromotion').val(startDate);
+                    $('#EndTimePromotion').val(endDate);
+                }
+
+                /*else {*/
+                //    $('#validate_img').html("");
+                //}
+                //$('#Price').val($('#Price').val().replace(/,/g, ''));
+
+            });
+
+            $('#Price').blur(function () {
+                //var text = $(this).text();
+                //text = text.replace(',', '');
+                //$(this).text(text);
+                $(this).val($(this).val().replace(/,/g, ''));
+            });
+
+        });
+    </script>
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>

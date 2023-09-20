@@ -1,0 +1,81 @@
+﻿@model FoodOnline.Models.User
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+<div class="row justify-content-md-center">
+    <div class="col-md-5">
+        <h3 style="text-align:center">Welcome @Session["Name"]</h3>
+        @using (Html.BeginForm("ChangePass", "LoginAdmin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="card">
+                <div class="card-header">Change Password</div>
+                <div class="card-body">
+                    <div class="form-group pass_show">
+                        @Html.Label("Current Password", new { @for = "Password" })  <br />
+                        <input type="password" name="Password" class="form-control" placeholder="Current Password">
+                    </div>
+                    <div class="form-group pass_show">
+                        @Html.Label("New Password", new { @for = "newPassword" }) <br />
+                        <input type="password" name="newPassword" class="form-control" placeholder="New Password">
+                    </div>
+                    <div class="form-group pass_show">
+                        @Html.Label("Confirm Password", new { @for = "Confirmpwd" }) <br />
+                        <input type="password" name="Confirmpwd" class="form-control" placeholder="Confirm Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-outline-dark" value="ChangePass" />
+                    </div>
+                    <div class="form-group">
+                        @Html.ActionLink("Back to List", "Index", "Admins")
+                    </div>
+                </div>
+            </div>
+        }
+    </div>@Html.Raw(TempData["msg"])
+</div>
+<style>
+    .card-header {
+        text-align: center;
+        background-color: lightgray;
+    }
+
+    .pass_show {
+        position: relative;
+        cursor: pointer;
+    }
+
+        .pass_show .ptxt {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            z-index: 1;
+            color: #f36c01;
+            margin-top: 5px;
+            cursor: pointer;
+            transition: .3s ease all;
+        }
+
+            .pass_show .ptxt:hover {
+                color: #333333;
+            }
+</style>
+<script>
+    $(document).ready(function () {
+        $('.pass_show').append('<span class="ptxt">Show</span>');
+    });
+
+
+    $(document).on('click', '.pass_show .ptxt', function () {
+
+        $(this).text($(this).text() == "Show" ? "Hide" : "Show");
+
+        $(this).prev().attr('type', function (index, attr) { return attr == 'password' ? 'text' : 'password'; });
+
+    });
+</script>

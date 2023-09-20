@@ -1,0 +1,213 @@
+/* body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+} */
+.text--line {
+    font-size: 1em;
+  }
+  
+  svg {
+    background-image: url(./images/pt2.jpg);
+    /* background-size: 0.12em 100%; */
+    font: 16em/1 Arial;
+    position: absolute;
+    width: 100%;
+    height: 40%;
+  }
+  
+  .text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 7% 28%;
+    stroke-width: 3px;
+    -webkit-animation: stroke-offset 5s infinite linear;
+            animation: stroke-offset 5s infinite linear;
+  }
+  .text-copy:nth-child(1) {
+    stroke: #360745;
+    stroke-dashoffset: 7%;
+  }
+  .text-copy:nth-child(2) {
+    stroke: whitesmoke;
+    stroke-dashoffset: 14%;
+  }
+  .text-copy:nth-child(3) {
+    stroke: #E7D84B;
+    stroke-dashoffset: 21%;
+  }
+  .text-copy:nth-child(4) {
+    stroke: #EFEAC5;
+    stroke-dashoffset: 28%;
+  }
+  .text-copy:nth-child(5) {
+    stroke: #1B8798;
+    stroke-dashoffset: 35%;
+  }
+  
+  @-webkit-keyframes stroke-offset {
+    50% {
+      stroke-dashoffset: 35%;
+      stroke-dasharray: 0 87.5%;
+    }
+  }
+  
+  @keyframes stroke-offset {
+    50% {
+      stroke-dashoffset: 35%;
+      stroke-dasharray: 0 87.5%;
+    }
+  }
+/* .same {
+    background-image: url(./images/pt2.jpg);
+    height: 200px;
+    width: 100%;
+    font-size: 70px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    
+} */
+.same2 {
+    font-size: 50px;
+    color:yellowgreen;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.same3 {
+    font-size: 30px;
+    font-family: arial black;
+    margin-left: 20%;
+}
+.same4 {
+    margin-left: 20%;
+}
+.same5 {
+    background-size: cover;
+    background-image: url(./images/kc5.jpg);
+    height: 600px;
+    width: 100%;
+    font-size: 20px;
+    color: whitesmoke;
+    /* position: absolute; */
+    text-align: center;
+}
+.same6{
+    font-size: 50px;
+    color: white;
+}
+.same7 {
+    margin-left: 20%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+.same8 {
+    font-size: 30px;
+    margin-left: 20%;
+   
+}
+.scene {
+    position: absolute;
+    /* top: 50%; */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    perspective: 400px;
+}
+.cube {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform: translateZ(-100px) rotateX(-10deg) translateY(50px);
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    animation: rotate 10s linear infinite;
+}
+@keyframes rotate {
+    0% {
+        transform: translateZ(-100px) rotateX(-10deg) translateY(50px) rotateY(360deg); 
+    } 100% {
+        transform: translateZ(-100px) rotateX(-10deg) translateY(50px) rotateY(0deg);
+    }
+}
+.cube-face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 1px solid;
+    transition:  all .5s;
+}
+.front {
+    background: url(./img_cube/caesar.jpg) center no-repeat;
+    background-size: cover;
+    transform: rotateY(0deg) translateZ(100px);
+    animation: front 10s linear infinite;
+}
+@keyframes front {
+    0%, 100% {
+        filter: opacity(.01);
+    } 25%, 75% {
+        filter: opacity(.5);
+    } 50% {
+        filter: opacity(1);
+    }
+}
+.back {
+    background: url(./img_cube/lobster-bisque.jpg) center no-repeat;
+    background-size: cover;
+    transform: rotateY(180deg) translateZ(100px);
+    animation: back 10s linear infinite;
+}
+@keyframes back {
+    0%, 100% {
+        filter: opacity(1);
+    } 25%, 75% {
+        filter: opacity(.5);
+    } 50% {
+        filter: opacity(.01);
+    }
+}
+.left {
+    background: url(./img_cube/greek-salad.jpg) center no-repeat;
+    background-size: cover;
+    transform: rotateY(-90deg) translateZ(100px);
+    animation: left 10s linear infinite;
+}
+@keyframes left {
+    0%, 100% {
+        filter: opacity(.5);
+    } 25% {
+        filter: opacity(1);
+    } 50% {
+        filter: opacity(.5);
+    } 75% {
+        filter: opacity(0.01);
+    }
+}
+.right {
+    background: url(./img_cube/tuscan-grilled.jpg) center no-repeat;
+    background-size: cover;
+    transform: rotateY(90deg) translateZ(100px);
+    animation: right 10s linear infinite;
+}
+@keyframes right {
+    0%, 100% {
+        filter: opacity(.5);
+    } 25% {
+        filter: opacity(.01);
+    } 50% {
+        filter: opacity(.5);
+    } 75% {
+        filter: opacity(1);
+    }
+}
+.bottom {
+    background: url(./img_cube/lobster-bisque.jpg) center no-repeat;
+    background-size: cover;
+    transform: rotateX(-90deg) translateZ(100px);
+}
+.top {
+    background: url(./img_cube/spinach-salad.jpg) center no-repeat;
+    background-size: cover;
+    transform: rotateX(90deg) translateZ(100px);
+}
+

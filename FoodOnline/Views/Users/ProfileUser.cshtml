@@ -1,0 +1,198 @@
+﻿@model FoodOnline.Models.User
+@{
+    ViewBag.Title = "ProfileUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="set-bg" style="padding-top: 50px" data-setbg="">
+    <div class="row mx-0">
+        <div class="col-sm-8" style="width: 90%; margin: auto; border: 1px solid black; margin-top: 50px; margin-bottom: 50px; box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 5px;">
+            <div class="no-title" style="height: 20px;"></div>
+            <!--Profile form-->
+            <div class="form-horizontal" action="#">
+                <div class="panel-body">
+                    @*<h2 class="mgbt-xs-20" style="color: white; text-align: center; font-family: 'Dancing Script' , cursive;"> Profile User: <span class="font-semibold">@Model.NameUser</span> </h2>*@
+                    <br>
+                    <div class="row">
+                        <!--Profile left Begin-->
+                        <div class="col-sm-5 mgbt-xs-20">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="form-img text-center mgbt-xs-15">
+                                        @if (Model.Img != null)
+                                        {
+                                            <img alt="example image"
+                                                 src="@Url.Content("~/Images/" + Model.Img)"
+                                                 style="width: 300px; overflow: hidden; border-radius: 10px; height: 300px;">
+                                        }
+                                        else
+                                        {
+                                            <img alt="example image"
+                                                 src="@Url.Content("~/Images/Avatar_Null.png")"
+                                                 style="width: 100%; overflow: hidden; border-radius: 10px; height: 400px;">
+                                        }
+
+                                    </div>
+                                    @using (Html.BeginForm("UploadAvatar", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @accept = "image/*" }))
+                                    {
+                                        @Html.HiddenFor(x => x.IdUser)
+                                        <div class="form-img-action text-center mgbt-xs-20" style="margin-top: 10px;">
+                                            @Html.TextBox("file", "", new { type = "file", @style = "width: 100%;", @class = "vd_bg-blue", @accept = "image/*", @id = "file", @onchange = "return fileValidation()" })
+                                            <input type="submit" class="btn btn-info" value="Upload" style="margin-top: 10px;" id="fileName" onchange="validateFileType()" accept="image/*" />
+                                            @ViewBag.Message
+                                        </div>
+                                    }
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                        <!--Profile left End-->
+
+                        <div class="col-sm-7">
+                            <!--Account setting Begin-->
+                            @using (Html.BeginForm("ProfileUser", "Users", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                @Html.HiddenFor(model => model.IdUser)
+                                <div style="margin-bottom: 25px;">
+                                    <h3 class="mgbt-xs-15" style="color:white">Profile Setting</h3>
+                                    <div class="form-group row" style="margin-top: 15px; height: 40px;">
+                                        <div class="col-sm-3" style=" text-align: right; ">
+                                            <label style="padding-top: 4px; margin-bottom: 0;font-weight: 500; margin: 5px; color: white;">Full Name</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            @Html.EditorFor(model => model.NameUser, new { htmlAttributes = new { style = "width: 100%; height: 35px;color:white;", @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    @*<div class="form-group row" style="margin-top: 15px; height: 40px;">
+                                            <div class="col-sm-3" style=" text-align: right; ">
+                                                <label style="padding-top: 4px; margin-bottom: 0;font-weight: 500; margin: 5px; color: black;">Email</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { style = "width: 100%; height: 35px;", @class = "form-control" } })
+                                            </div>
+                                        </div>*@
+                                    <div class="form-group row" style="margin-top: 15px; height: 40px;">
+                                        <div class="col-sm-3" style=" text-align: right; ">
+                                            <label style="padding-top: 4px; margin-bottom: 0; font-weight: 500; margin: 5px; color: white;">
+                                                Phone
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { style = "width: 100%; height: 35px; color:white;", @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" style="margin-top: 15px; height: 40px;">
+                                        <div class="col-sm-3" style=" text-align: right; ">
+                                            <label style="padding-top: 4px; margin-bottom: 0;font-weight: 500; margin: 5px; color: white;">Address</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { style = "width: 100%; height: 35px; color:white;", @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    @*<div class="form-group row" style="margin-top: 15px; height: 40px;">
+                                            <div class="col-sm-3" style=" text-align: right; ">
+                                                <label style="padding-top: 4px; margin-bottom: 0;font-weight: 500; margin: 5px; color: black;">Post/Zip Code</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                @Html.EditorFor(model => model.PostCode, new { htmlAttributes = new { style = "width: 100%; height: 35px;", @class = "form-control" } })
+                                            </div>
+                                        </div>*@
+                                </div>
+
+                                <!--Account setting End-->
+
+                                <hr />
+                                <!--Profile settign Begin-->
+                                <div style="margin-bottom: 25px;">
+                                    <h3 class="mgbt-xs-15" style="color:white">Password setting</h3>
+
+                                    <!--<div class="form-group row" style="margin-top: 15px; height: 40px;">
+                                        <div class="col-sm-3" style=" text-align: right; ">
+                                            <label style="padding-top: 4px; margin-bottom: 0; font-weight: 500; margin: 5px; color: white;">Password</label>
+                                        </div>
+                                        <div class="col-sm-9">-->
+                                    @*<input type="password" name="Password" class="form-control" placeholder="Current Password">*@
+                                    @*@Html.EditorFor(model => model.Password, new { htmlAttributes = new { style = "width: 100%; height: 35px; color:white;", @class = "form-control", @type = "password", @readonly = "read-only" } })*@
+                                    <!--</div>
+                                    </div>-->
+                                    @*<div class="form-group row" style="margin-top: 15px; height: 40px;">
+                                            <div class="col-sm-3" style=" text-align: right; ">
+                                                <label style="padding-top: 4px; margin-bottom: 0; font-weight: 500; margin: 5px; color: white;">
+                                                    NewPassword
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input name="txtRepassword" type="password" placeholder="Repassword..." style="width: 100%; height: 35px; color: white;" value="" class="form-control">
+                                            </div>
+                                        </div>*@
+                                    <div style="margin-top: 15px; width: 100%;">
+                                        <p style="color: red; text-align: center;">@ViewBag.Message</p>
+                                    </div>
+                                    <div class="form-group" style="margin-top: 15px; height: 40px;">
+                                        <a class="nav-link" href="@Url.Action("ChangePass", "Users", new {id = Session["User_Id"].ToString() })">
+                                            <i data-feather="edit"></i>
+                                            <span class="link-title btn btn-outline-danger">Change Password</span>
+                                        </a>
+                                    </div>
+
+                                    <div class="form-group row" style="margin-top: 15px; height: 40px; ">
+                                        <input type="submit" value="Save" style="margin: auto; " class="btn btn-outline-info">
+                                    </div>
+                                </div>
+                                <!--Profile setting End-->
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!--Profile End-->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!------Jquery Load Background Image-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script type="text/javascript">
+    $('.set-bg').each(function () {
+        var bg = $(this).data('setbg');
+        $(this).css('background-image', 'url(' + bg + ')');
+        $(this).css('background-repeat', 'no-repeat');
+        $(this).css('background-size', 'cover');
+    });
+
+    function fileValidation() {
+        var fileInput =
+            document.getElementById('file');
+
+        var filePath = fileInput.value;
+
+        // Allowing file type
+        var allowedExtensions =
+            /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Invalid file type');
+            fileInput.value = '';
+            return false;
+        }
+        else {
+
+            // Image preview
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById(
+                        'imagePreview').innerHTML =
+                        '<img src="' + e.target.result
+                        + '"/>';
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    }
+</script>
+

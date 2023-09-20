@@ -1,0 +1,282 @@
+﻿@font-face {
+  font-family: 'Hind';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Hind Medium'), local('Hind-Medium'), url(s/hind/v11/5aU19_a8oxmIfJpbERySiA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Hind';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Hind SemiBold'), local('Hind-SemiBold'), url(s/hind/v11/5aU19_a8oxmIfLZcERySiA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Noto Sans'), local('NotoSans'), url(s/notosans/v11/o-0IIpQlx3QUlC5A4PNr5TRF.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(s/notosans/v11/o-0NIpQlx3QUlC5A4PNjXhFVZNyE.ttf) format('truetype');
+}
+.btn-create {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #458bc4;
+    background-color: #fff;
+    border-color: #458bc4;
+}
+    .btn-create:hover {
+        background: #458bc4;
+        color: #fff;
+    }
+.btn-submit {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: red;
+    background-color: #fff;
+    border-color: red;
+    width: auto;
+}
+
+.btn-submit:hover {
+    background: red;
+    color: #fff;
+}
+.btn-edit {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #fff;
+    background-color: #458bc4;
+    border-color: #458bc4;
+    width: auto;
+}
+
+    .btn-edit:hover {
+        background: #266192;
+        color: #fff;
+    }
+.btn-add-step {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #000000;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn-add-step:hover {
+    background: #efededba;
+    color: #065865;
+}
+.btn-upload {
+    height: calc(1.5em + 0.9rem + 2px);
+    width: 14.3%;
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    width: 100px;
+}
+
+.btn-upload:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62
+}
+.input-img {
+    width: 45%;
+    height: calc(1.5em + 0.9rem + 2px);
+    padding: 0.45rem 0.9rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #626773;
+    /*background-color: #fff;*/
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.2rem;
+    -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+}
+.sao{
+    color: red;
+}
+.cc{
+    /*text-align: center;*/
+    padding-left: 32%;
+    padding-right: 40%;
+}
+
+.form-horizontal .control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: right;
+}
+.form-horizontal .form-group {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.three_dot p {
+    display: inline-block;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+.table-delails {
+    border-spacing: 30px 20px;
+}
+.td-up {
+    vertical-align: top;
+}
+.td-width{
+    width: 30px;
+}
+.span-color {
+    color: red;
+}
+.div-layout {
+    padding-top: 5%;
+    padding-left: 20%;
+    padding-right: 20%;
+    /*background: #f5f6f8;*/
+    /*display: block;
+    position: relative;
+    text-align: left;
+    border: 0;
+    border-radius: 5px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    margin-bottom: 50px;
+    position: relative;
+    table-layout: fixed;
+    width: 65%;
+    height: 170px;*/
+}
+.div-layout2 {
+    background: #f5f6f8;
+    border: 0;
+    border-radius: 5px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 90%;
+    height: 200px;
+}
+.p-padding {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+.bg-error, .bg-error > a {
+    color: #fff !important;
+}
+
+.bg-error {
+    background-color: red !important;
+}
+
+.bg-error {
+    background-color: red !important;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.bg-no, .bg-no > a {
+    color: #fff !important;
+}
+
+.bg-no {
+    background-color: #acadaf !important;
+}
+
+.bg-no {
+    background-color: #acadaf !important;
+}
+

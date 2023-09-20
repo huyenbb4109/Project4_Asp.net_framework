@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Restaurantly Bootstrap Template - Index</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/Content/Home/assets/img/favicon.png" rel="icon">
+    <link href="~/Content/Home/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/Content/Home/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Home/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/Content/Home/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Home/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/Content/Home/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Content/Home/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/Content/Home/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/Content/Home/css/cart/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/Content/Home/css/animate.css">
+
+    <link rel="stylesheet" href="~/Content/Home/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/Content/Home/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/Home/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="~/Content/Home/css/flaticon.css">
+    <link rel="stylesheet" href="~/Content/Home/css/style.css">
+    <link rel="stylesheet" href="~/Content/Home/css/3dcube3.css">
+    <!-- Template Main CSS File -->
+    <link href="~/Content/Home/assets/css/style.css" rel="stylesheet">
+
+
+    <script src="https://kit.fontawesome.com/ad3e7aec43.js" crossorigin="anonymous"></script>
+    <!-- =======================================================
+    * Template Name: Restaurantly - v3.8.0
+    * Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+    <style>
+        .dropdown-hm {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content-hm {
+            display: none;
+            position: absolute;
+            background-color: black;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
+
+        .fz {
+            font-size: 14px
+        }
+
+        .dropdown-hm:hover .dropdown-content-hm {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======= Top Bar ======= -->
+    <div id="topbar" class="d-flex align-items-center fixed-top">
+        <div class="container d-flex justify-content-center justify-content-md-between">
+
+            <div class="contact-info d-flex align-items-center">
+                <i class="bi bi-phone d-flex align-items-center"><span>+1 5589 55488 55</span></i>
+                <i class="bi bi-clock d-flex align-items-center ms-4"><span> Mon-Sat: 11AM - 23PM</span></i>
+            </div>
+
+            <div class="languages d-none d-md-flex align-items-center">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-cente">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+
+            <h1 class="logo me-auto me-lg-1"><a href="index.html">Aptech FFood</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a class="nav-link scrollto" href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a class="nav-link scrollto" href="@Url.Action("Menu", "Home")">Menu</a></li>
+                    <li><a class="nav-link scrollto" href="@Url.Action("About", "Home")">About</a></li>
+                    <li>
+                        @{
+                            FoodOnline.Models.User user = Session["User"] as FoodOnline.Models.User;
+                            if (user != null)
+                            {
+                                <ul class="dropdown-hm">
+                                    <li class="nav-link scrollto fz">Hello @user.NameUser</li>
+                                    <li class="dropdown-content-hm">
+                                        <a href="@Url.Action("ProfileUser", "Users", new {userID = user.IdUser})">Info</a>
+                                        <a href="/Home/SignOut">SignOut</a>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul class="dropdown-hm">
+                                    <li class="nav-link scrollto fz">Login</li>
+                                    <li class="dropdown-content-hm">
+                                        <a href="/Home/SignIn">Sign In</a>
+                                        <a href="/Home/SignUp">Register</a>
+                                    </li>
+                                </ul>
+                            }
+                        }
+                    </li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+
+            </nav><!-- .navbar -->
+            <div class="col-sm-4 world animated wow fadeInRight" data-wow-delay=".5s">
+                <a href="/Cart/Checkout" @*href="@Url.Action("Checkout", "Cart")"*@>
+                    <h5>
+                        <div class="total">
+                            <img src="~/Content/Home/images/shopping-cart.png" height="27" alt="" />
+
+                            @{
+                                List<FoodOnline.Models.ItemCart> itemCarts = Session["Cart"] as List<FoodOnline.Models.ItemCart>;
+                                if (itemCarts != null && itemCarts.Count > 0)
+                                {
+                                    <span class="simpleCart_total">@itemCarts.Sum(x => x.ProductPrice * x.Quantity).ToString("#,##")₫ (@itemCarts.Sum(x => x.Quantity))</span>
+                                }
+                                else
+                                {
+                                    <span class="simpleCart_total">0₫ (0)</span>
+                                }
+                            }
+
+                        </div>
+                        @*<span class="nav-link scrollto fas fa-shopping-cart"></span>*@
+                    </h5>
+                </a>
+            </div>
+            <i class="nav-link scrollto fas fa-search-location"></i>
+            @*<a href="@Url.Action("Create1", "CookingRecipes", new { id = Session["IdUser"].ToString() })" class="scrollto d-none d-lg-flex">@Session["UserName"].ToString()<i class="mdi mdi-chevron-down"></i></a>*@
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Hero Section ======= -->
+
+    @RenderBody()
+
+    <!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-info">
+                            <h3 style="color: #ffffff">Aptech FFood</h3>
+                            <p>
+                                258 Doi Can Street <br>
+                                Ba Dinh, Hanoi<br><br>
+                                <strong>Phone:</strong> +84 123 456 789<br>
+                                <strong>Email:</strong>aprotrain@example.com<br>
+                            </p>
+                            <div class="social-links mt-3">
+                                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Menu</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Our Newsletter</h4>
+                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <form action="" method="post">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Restaurantly</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/Content/Home/assets/vendor/aos/aos.js"></script>
+    <script src="~/Content/Home/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Home/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/Content/Home/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/Content/Home/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/Content/Home/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/Content/Home/assets/js/main.js"></script>
+
+    <script src="~/Content/Home/js/jquery.min.js"></script>
+    <script src="~/Content/Home/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/Home/js/popper.min.js"></script>
+    <script src="~/Content/Home/js/bootstrap.min.js"></script>
+    <script src="~/Content/Home/js/jquery.easing.1.3.js"></script>
+    <script src="~/Content/Home/js/jquery.waypoints.min.js"></script>
+    <script src="~/Content/Home/js/jquery.stellar.min.js"></script>
+    <script src="~/Content/Home/js/owl.carousel.min.js"></script>
+    <script src="~/Content/Home/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/Home/js/jquery.animateNumber.min.js"></script>
+    <script src="~/Content/Home/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/Home/js/jquery.timepicker.min.js"></script>
+    <script src="~/Content/Home/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="~/Content/Home/js/google-map.js"></script>
+    <script src="~/Content/Home/js/main.js"></script>
+    <script src="~/Content/Home/assets/js/notify.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

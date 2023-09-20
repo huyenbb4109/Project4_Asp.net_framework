@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_LoginPartial.cshtml";
+}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            /<img src="~/Content/Home/images/website.png" id="icon" alt="User Icon" />
+        </div>
+        <h2>Login</h2>
+
+        <!-- Login Form -->
+        <form action="/Home/SignIn" method="post">
+            <h2>@ViewBag.Message</h2>
+            <input type="text" id="login" class="fadeIn second" name="Email" placeholder="Email">
+            <input type="password" id="password" class="fadeIn third" name="Password" placeholder="Password">
+            <i class="bi bi-eye-slash eye-contact" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+            <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" href="/Home/ForgotPassword">Forgot Password?</a><br />
+            Don't have account yet?
+            <a class="underlineHover" href="/Home/SignUp">Register</a>
+        </div>
+        @*<h4>Don't have account yet? <a class="underlineHover" href="/Home/SignUp">Register</a> </h4>*@
+    </div>
+</div>
+<script>
+    const togglePassword = document.querySelector("#togglePassword");
+    const password = document.querySelector("#password");
+
+    togglePassword.addEventListener("click", function () {
+        // toggle the type attribute
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+
+        // toggle the icon
+        this.classList.toggle("bi-eye");
+    });
+</script>
+

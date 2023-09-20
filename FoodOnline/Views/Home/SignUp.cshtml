@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        @*<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
+                <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+                <li class="active">Đăng ký</li>
+            </ol>*@
+    </div>
+</div>
+<!--<div class="container">
+    <div class="register">
+        <h2 style="color:#fff">Đăng ký</h2>
+        
+            @*<div class="col-md-6">
+                    <h3>@ViewBag.Message</h3>
+                    <div>
+                        <span>Họ tên</span>
+                        <input type="text" name="NameUser" required>
+
+                        <span>Email</span>
+                        <input type="text" name="Email" required>
+
+                        <span>Số điện thoại</span>
+                        <input type="text" name="Phone" required>
+                    </div>
+                    <div class=" col-md-6 register-bottom-grid">
+                        <div>
+                            <input type="submit" value="Đăng ký" class="btn btn-default">
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class=" col-md-6 register-bottom-grid">
+                    <div>
+                        <span>Mật khẩu</span>
+                        <input type="password" name="Password" required id="Password">
+                        <span>Nhập lại mật khẩu</span>
+                        <input type="password" name="PasswordMatch" required oninput="check(this)">
+                        <span>Địa chỉ</span>
+                        <textarea class="form-control" name="Address" required></textarea>
+                    </div>
+                </div>*@
+
+
+        <!--}
+    </div>
+</div>-->
+
+<div class="container">
+    @using (Html.BeginForm("SignUp", "Home", FormMethod.Post))
+    {
+        <h1 style="color:white">Register</h1>
+        <h3 style="color:white">@ViewBag.Message</h3>
+        <p>Please fill in this form to create an account.</p>
+        <hr>
+        <label for="name"><b>Name</b></label>
+        <input type="text" name="NameUser" required>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" name="Email" required>
+
+        <label for="phone">Phone</label>
+        <input type="text" name="Phone" required>
+
+        <label for="address">Address</label>
+        <textarea name="Address" required></textarea>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" name="Password" required id="Password">
+
+        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <input type="password" name="PasswordMatch" required oninput="check(this)">
+        <hr>
+        <input type="submit" value="Đăng ký" class="btn btn-default registerbtn">
+        @*<button type="submit" class="registerbtn">Register</button>*@
+    }
+    </div>
+
+<div class="container signin">
+    <p>Already have an account? <a href="/Home/SignIn">Sign in</a>.</p>
+</div>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: black;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+    label{
+        color: #fff;
+    }
+
+    /* Add padding to containers */
+    .container {
+        padding: 16px;
+        background-color: black;
+    }
+
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: grey;
+            outline: none;
+        }
+
+    textarea {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+    textarea:focus {
+        background-color: grey;
+        outline: none;
+    }
+
+    /* Overwrite default styles of hr */
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    /* Set a style for the submit button */
+    .registerbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+        .registerbtn:hover {
+            background-color: #04AA6D;
+        }
+
+    /* Add a blue text color to links */
+    a {
+        color: dodgerblue;
+    }
+
+    /* Set a grey background color and center the text of the "sign in" section */
+    .signin {
+        background-color: #000;
+        text-align: center;
+    }
+</style>
+<script>
+    function check(input) {
+        if (input.value != document.getElementById('Password').value) {
+            input.setCustomValidity('Mật khẩu không trùng khớp');
+        } else {
+            input.setCustomValidity('');
+        }
+    }
+</script>
+
